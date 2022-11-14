@@ -18,7 +18,7 @@
   	<jsp:include page="${path }/header.jsp" />
 <div class="container" id="content">
 	<h2 class="title">회원 가입</h2>
-	<form name="frm1" id="frm1" action="AddUserCtrl.do" method="post" onsubmit="return joinCheck(this)">
+	<form name="frm1" id="frm1" action="${path1 }/AddUserCtrl.do" method="post" onsubmit="return joinCheck(this)">
 		<table class="table">
 			<tbody>
 				<tr>
@@ -105,5 +105,5 @@
 	</script>
 </div>
   <jsp:include page="../footer.jsp"></jsp:include>
-  </body>
+</body>
 </html>
