@@ -13,6 +13,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>회원 가입</title>
   <jsp:include page="/head.jsp" />
+<style>
+.title { padding-top:36px; padding-bottom:20px; }
+#id { width:780px; float:left; margin-right:30px; margin-left:6px; }
+</style>
 </head>
 <body>
   	<jsp:include page="${path }/header.jsp" />
@@ -24,36 +28,54 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-					<div class="form-row">
-							<input type="text" name="cusId" id="cusId" placeholder="아이디 입력" class="form-control" autofocus required />
-							<input type="button" class="btn btn-primary" value="아이디 중복 확인" onclick="idCheck()">
+						<div class="form-row">
+							<input type="text" name="id" id="id" placeholder="아이디 입력" class="input" autofocus required />
+							<input type="button" class="button is-info" value="아이디 중복 확인" onclick="idCheck()">
 							<input type="hidden" name="idck" id="idck" value="no">
-					</div>
+						</div>
+						<div>
+							<c:if test="${empty qid }">
+							<p id="msg" style="padding-left:0.5rem">아이디 중복 체크를 하지 않으셨습니다.</p>
+							</c:if>
+							<c:if test="${not empty qid }">
+							<p id="msg" style="padding-left:0.5rem">아이디 중복 체크후 수정하였습니다.</p>
+							</c:if>
+						</div>
 					</td>
 				</tr>
 				<tr>
 				    <th>비밀번호</th>
 				    <td>
-				        <input type="password" id="cusPw" name="cusPw" class="form-control" placeholder="비밀번호 입력" maxlength="20" required>
+				        <input type="password" id="pw" name="pw" class="input" placeholder="비밀번호 입력" maxlength="20" required>
 				    </td>
 				</tr>
 				<tr>
 				    <th>비밀번호 확인</th>
-				    <td><input type="password" id="cusPw2" name="cusPw2" class="form-control" placeholder="비밀번호 확인" required></td>
+				    <td><input type="password" id="pw2" name="pw2" class="input" placeholder="비밀번호 확인" required></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" id="cusName" name="cusName" class="form-control" placeholder="이름을(를) 입력" required></td>
+					<td><input type="text" id="name" name="name" class="input" placeholder="이름을(를) 입력" required></td>
 				</tr>
 				<tr>
-				    <th>이메일</th>
-				    <td>
-				        <input type="email" id="email" name="email" class="in_dt" placeholder="이메일 입력">
-				    </td>
+					<th>이메일</th>
+					<td><input type="email" name="email" id="email" placeholder="이메일 입력" class="input" required></td>
+				</tr>
+				<tr>
+					<th>생년월일</th>
+					<td><input type="date" name="birth" id="birth" placeholder="생년월일 입력" class="input" required></td>
 				</tr>
 				<tr>
 					<th>연락처</th>
-					<td><input type="text" id="tel" name="tel" class="form-control" placeholder="000-0000-0000"></td>
+					<td><input type="tel" name="tel" id="tel" maxlength="11" placeholder="전화번호 숫자만 입력 00000000000" class="input" required></td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><input type="text" name="address1" id="address1" placeholder="기본 주소 입력" class="input" required /><br>
+					<input type="text" name="address2" id="address2" placeholder="상세 주소 입력" class="input" required /><br>
+					<input type="text" name="postcode" id="postcode" style="width:160px;float:left;margin-right:20px;" placeholder="우편번호" class="input">
+					<button id="post_btn" onclick="findAddr()" class="button is-info">우편번호 검색</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -62,6 +84,18 @@
 			<input type="reset" name="reset-btn" class="btn btn-info" value="취소">
 		</div>
 	</form>	
+	<script>
+	$(document).ready(function(){
+		$("#id").keyup(function(){
+			$("#idck").val("no");
+			if($(this).val()!=""){
+				$("#msg").html("<strong>아이디 입력중입니다.</strong>");
+			} else {
+				$("#msg").html("아직 아이디 중복 체크를 하지 않으셨습니다.");
+			}
+		});
+	});
+	</script>
 	<script>
 	function idCheck(){
 		if($("#id").val()==""){
@@ -80,21 +114,21 @@
 				var idChk = result.result;	//true 또는 false를 받음
 				if(idChk==false){
 					$("#idck").val("no");
-					$("#msg").html(<strong style='color:red'>기존에 사용 아이디</strong>);
+					$("#msg").html("<strong style='color:red'>중복되는 아이디입니다. 다시 시도해주세요.</strong>");
 					$("#id").focus();
 				}else if(idChk==true) {
 					$("#idck").val("yes");
-					$("#msg").html(<strong style='color:blue'>사용가능 아이디 </strong>);
-				}else if(idChk==null) {
-					$("#msg").html(<strong>실행오류 다시 시도</strong>);
+					$("#msg").html("<strong style='color:blue'>사용 가능한 아이디입니다. </strong>");
+				}else if(idChk=="") {
+					$("#msg").html("<strong>오류가 발생했습니다. 다시 시도해주세요.</strong>");
 				}
 			}
 		})
 	}
 	function joinCheck(f){
-		if(f.cusPw.value!=f.cusPw2.value){
+		if(f.pw.value!=f.pw2.value){
 			alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
-			f.cusPw.focus();
+			f.pw.focus();
 			return false;
 		}
 		if(f.idck.value!="yes"){
@@ -103,6 +137,25 @@
 		}
 	}
 	</script>
+	<script>
+	function findAddr() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				console.log(data);
+				var roadAddr = data.roadAddress;
+				var jibunAddr = data.jibunAddress;
+				document.getElementById("postcode").value = data.zonecode;
+				if(roadAddr !== '') {
+					document.getElementById("address1").value = roadAddr;				
+				} else if(jibunAddr !== ''){
+					document.getElementById("address1").value = jibunAddr;
+				}
+				document.getElementById("address2").focus();
+			}
+		}).open();
+	}
+	</script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </div>
   <jsp:include page="../footer.jsp"></jsp:include>
 </body>

@@ -15,24 +15,44 @@
   <jsp:include page="/head.jsp" />
 </head>
 <body>
-  	<jsp:include page="${path }/header.jsp" />
-<div class="container" id="content">
+<jsp:include page="/header.jsp" />
+  <section class="section">
+    <div class="container">
 	<h2 class="title">로그인</h2>
-	<form name="frm1" id="frm1" action="${path1 }/LoginCtrl.do" method="post">
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input type="text" name="cusId" id="cusId" placeholder="아이디 입력" class="form-control" autofocus required />
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="cusPw" id="cusPw" placeholder="비밀번호 입력" class="form-control" required /></td>
-			</tr>
-		</tbody>
+	<form name="frm1" id="frm1" action="${path1 }/UserLoginCtrl.do" method="post" onsubmit="return joinCheck(this)">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>아이디</th>
+					<td>
+						<div class="form-row">
+							<input type="text" name="id" id="id" placeholder="아이디 입력" class="input" autofocus required />
+						</div>
+						<div>
+							<c:if test="${empty msg }">
+								<p></p>
+							</c:if>
+							<c:if test="${not empty msg }">
+								<p>${msg }</p>
+							</c:if>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="pw" id="pw" placeholder="비밀번호 입력" class="input" required /></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn-group">
+			<input type="submit" name="submit-btn" class="button button-info" value="로그인">
+			<a href="<%=request.getContextPath() %>/user/agree.jsp" class="button button-danger">회원가입</a>
+		</div>
+	</form>	
+	<script>
+	</script>
 </div>
-  <jsp:include page="../footer.jsp"></jsp:include>
+</section>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

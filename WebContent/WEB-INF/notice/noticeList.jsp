@@ -45,7 +45,9 @@
 		  </tbody>
 		</table>
 		<div class="buttons">
-		  <a href="${path1 }/notice/addNotice.jsp" class="button is-success">글 등록</a>
+		  <c:if test='${sid.equals("admin") }'>
+		  	<a href="${path1 }/notice/addNotice.jsp" class="button is-success">글 등록</a>
+		  </c:if>
 		</div>
     </div>
   </section>

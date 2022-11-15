@@ -9,3 +9,22 @@ create table notice (no int primary key auto_increment, title varchar(200), cont
 DESC notice;
 
 create table user (id varchar(16) primary key, pw varchar(20) not null, name varchar(20) not null, tel varchar(15), email varchar(50), birth varchar(10), resDate datetime default now());
+drop table user;
+CREATE TABLE USER(
+	id VARCHAR(30) PRIMARY KEY,
+	pw VARCHAR(300) NOT NULL,
+	NAME VARCHAR(50) NOT NULL,
+	POINT INT DEFAULT 0,
+	grade VARCHAR(4) DEFAULT "F",
+	visted INT DEFAULT 1,
+	tel VARCHAR(11),
+	addr VARCHAR(150),
+	email VARCHAR(100),
+	birth DATE,
+	regdate DATETIME DEFAULT NOW()
+);
+
+select * from user;
+UPDATE user SET grade="A" WHERE id="admin";
+
+create table pic (no int primary key auto_increment, tourno varchar(20), )

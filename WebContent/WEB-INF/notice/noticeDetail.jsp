@@ -11,14 +11,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>공지사항 목록</title>
+    <title>공지사항 상세</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   </head>
   <body>
   <jsp:include page="/header.jsp" />
   <section class="section">
     <div class="container">
-      <h1 class="title">공지사항 목록</h1>
+      <h1 class="title">공지사항</h1>
 		<table class="table">
 		   <tbody>
 		    <tr>
@@ -45,7 +45,13 @@
 		    </tr>
 		  </tbody>
 		</table>
-		<a href="${path1 }/GetNoticeListCtrl.do">목록</a>
+		<div class="buttons">
+		  <a href="${path1 }/GetNoticeListCtrl.do" class="button is-info">목록</a>
+		  <c:if test='${sid.equals("admin") }'>
+			  <a href="${path1 }/DelNoticeCtrl.do?no=${dto.no }" class="button is-danger">글 삭제</a>
+			  <a href="${path1 }/ModifyNoticeCtrl.do?no=${dto.no }" class="button is-warning">글 수정</a>
+		  </c:if>
+		</div>
     </div>
   </section>
   <jsp:include page="/footer.jsp"></jsp:include>

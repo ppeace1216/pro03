@@ -9,4 +9,5 @@
 <style>
 .table { min-width:960px; }
 #logo { display:block; width:92px; height:45px; }
-</style>l>
+</style>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
