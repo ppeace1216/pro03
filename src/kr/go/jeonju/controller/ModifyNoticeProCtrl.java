@@ -12,7 +12,7 @@ import kr.go.jeonju.dto.NoticeDTO;
 import kr.go.jeonju.model.NoticeDAO;
 
 
-@WebServlet("/ModifyNoticeProCtrl")
+@WebServlet("/ModifyNoticeProCtrl.do")
 public class ModifyNoticeProCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

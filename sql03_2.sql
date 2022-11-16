@@ -26,5 +26,12 @@ CREATE TABLE USER(
 
 select * from user;
 UPDATE user SET grade="A" WHERE id="admin";
+delete from user where id = "admin";
+delete from user where id = "peace";
+delete from user where id = "qwerty";
 
-create table pic (no int primary key auto_increment, tourno varchar(20), )
+CREATE TABLE tour(no INT PRIMARY KEY AUTO_INCREMENT, tourno varchar(10) not null, cate varchar(10) not null, title VARCHAR(200), subtitle varchar(500), content VARCHAR(1000), regdate DATETIME DEFAULT NOW(), visited INT DEFAULT 0);
+desc tour;
+create table pic(no INT PRIMARY KEY AUTO_INCREMENT, tourno varchar(10) not null, picname varchar(30), pos int default 1);
+desc pic;
+COMMIT;

@@ -44,10 +44,12 @@ public class AddUserCtrl extends HttpServlet {
 		
 		//비밀번호를 암호화
 		UserDTO user = new UserDTO();
+		
 		String key = "%02x";
 		String encrypted = "";
 		try {
 			encrypted = AES256.encryptAES256(pw, key);
+			System.out.println("비밀번호 암호화 : "+encrypted);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +59,7 @@ public class AddUserCtrl extends HttpServlet {
 		} else {	//없는 아이디인 경우
 			result = true;	//true로 바꿔서 가입이 가능하게 함
 			user.setId(id);
-			user.setPw(pw);
+			user.setPw(encrypted);
 			user.setName(name);
 			user.setEmail(email);
 			user.setBirth(birth);
