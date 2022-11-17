@@ -36,8 +36,7 @@ public class TestDAO {
 	}
 	
 	public ArrayList<TestDTO> testDataAll() {
-		ArrayList<TestDTO> testList = new ArrayList<TestDTO>();	//강사님은 여기다 null로 입력하심..왜인지 모르겠슴...
-		
+		ArrayList<TestDTO> list = new ArrayList<TestDTO>();	
 		try {
 			con = Maria.getConnection();
 			pstmt = con.prepareStatement(Maria.TEST_SELECT_ALL);
@@ -47,13 +46,13 @@ public class TestDAO {
 				TestDTO dto = new TestDTO();
 				dto.setName(rs.getString("name"));
 				dto.setPoint(rs.getInt("point"));
-				testList.add(dto);
+				list.add(dto);
 			}
 		} catch(Exception e){
 			System.out.println("잘못된 연산 및 요청으로 인해 목록을 불러오지 못했습니다.");
 		} finally {
 			Maria.close(rs, pstmt, con);
 		}
-		return testList;
+		return list;
 	}
 }

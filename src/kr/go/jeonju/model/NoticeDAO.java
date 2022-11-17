@@ -12,7 +12,6 @@ public class NoticeDAO {
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	String sql = "";
 	
 	public ArrayList<NoticeDTO> getNoticeList() {
 		ArrayList<NoticeDTO> notiList = new ArrayList<NoticeDTO>();
