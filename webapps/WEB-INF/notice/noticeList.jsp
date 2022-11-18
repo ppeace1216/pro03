@@ -14,15 +14,30 @@
     <title>공지사항 목록</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <style>
-  	.section { clear:both; width:1400px; margin:0 auto; }
+  	.top {clear:both; width:auto; margin:auto; text-align : center;}
+  	.section { clear:both; width:1200px; margin:0 auto; }
 	.section:after { content:""; display:block; clear:both; }
+	.breadcrumb { clear:both; margin:100 auto; }
   </style>
   </head>
   <body>
   <jsp:include page="/header.jsp" />
+  <div class="top">
+  	<br><br>
+  	<h1 class="title">공지사항</h1>
+  	<br><hr>
+  </div>
+  <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+	  <ul>
+	    <li><a href="#">Bulma</a></li>
+	    <li><a href="#">Documentation</a></li>
+	    <li><a href="#">Components</a></li>
+	    <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+	  </ul>
+	</nav>
+	<hr>
   <section class="section">
     <div class="container">
-      <h1 class="title">공지사항</h1>
 		<table class="table">
 		  <thead>
 		    <tr>
@@ -42,11 +57,11 @@
 		      </td>
 		    </tr>
 		    </c:forEach>
-<%-- 		    <c:if test="${list==null }">
-		    <tr>
-		    	<td colspan="3">해당 데이터 목록이 없습니다.</td>
-		    </tr>
-		    </c:if> --%>
+	<%-- 		    <c:if test="${list==null }">
+			    <tr>
+			    	<td colspan="3">해당 데이터 목록이 없습니다.</td>
+			    </tr>
+			    </c:if> --%>
 		  </tbody>
 		</table>
 		<div class="buttons">

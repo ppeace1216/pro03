@@ -9,6 +9,8 @@ public class TourDTO {
 	private String content; 
 	private String regdate; 
 	private int visited;
+	private String imgURL;
+	private String addr;
 	
 	public int getNo() {
 		return no;
@@ -58,12 +60,25 @@ public class TourDTO {
 	public void setVisited(int visited) {
 		this.visited = visited;
 	}
+	public String getImgURL() {
+		return imgURL;
+	}
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	@Override
 	public String toString() {
 		return "TourDTO [no=" + no + ", tourno=" + tourno + ", cate=" + cate
 				+ ", title=" + title + ", subtitle=" + subtitle + ", content="
 				+ content + ", regdate=" + regdate + ", visited=" + visited
-				+ "]";
+				+ ", imgURL=" + imgURL + ", addr=" + addr + "]";
 	}
+	
 	
 }

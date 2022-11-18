@@ -41,8 +41,24 @@ CREATE TABLE tour(
 	visited INT DEFAULT 0
 );
 desc tour;
+ALTER TABLE tour ADD COLUMN addr VARCHAR(200);
 select * from tour;
 
 create table pic(no INT PRIMARY KEY AUTO_INCREMENT, tourno varchar(20), picname varchar(100), pos int default 1);
 desc pic;
+
+create table impress(
+	no int primary key auto_increment, 
+	cate varchar(20), 
+	tourno varchar(20), 
+	id varchar(30),
+	content varchar(500), 
+	esti varchar(20),  
+	regdate DATETIME DEFAULT NOW() 
+);
+drop table impress;
+desc impress;
+create table qna(
+	
+);
 COMMIT;

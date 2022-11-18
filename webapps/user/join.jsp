@@ -71,17 +71,18 @@
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td><input type="text" name="address1" id="address1" placeholder="기본 주소 입력" class="input" required /><br>
-					<input type="text" name="address2" id="address2" placeholder="상세 주소 입력" class="input" required /><br>
-					<input type="text" name="postcode" id="postcode" style="width:160px;float:left;margin-right:20px;" placeholder="우편번호" class="input">
+					<td>
+					<input type="text" name="postcode" id="postcode" style="width:160px;float:left;margin-right:20px;" placeholder="우편번호" class="input" />
 					<button id="post_btn" onclick="findAddr()" class="button is-info">우편번호 검색</button>
+					<input type="text" name="address1" id="address1" placeholder="기본 주소 입력" class="input" required /><br>
+					<input type="text" name="address2" id="address2" placeholder="상세 주소 입력" class="input" required /><br>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="btn-group">
-			<input type="reset" name="reset-btn" class="button is-danger" value="취소">
 			<input type="submit" name="submit-btn" class="button is-info" value="회원가입">
+			<input type="reset" name="reset-btn" class="button is-danger" value="취소">
 		</div>
 	</form>	
 	<script>

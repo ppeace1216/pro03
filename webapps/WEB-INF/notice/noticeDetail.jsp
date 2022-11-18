@@ -36,7 +36,7 @@
 		    <tr> 
 		      <th>작성일</th>
 		      <td>
-		      	<fmt:parseDate value="${dto.regDate }" var="regdate" pattern="yyyy-MM-dd HH:mm:ss" />
+		      	<fmt:parseDate value="${dto.regdate }" var="regdate" pattern="yyyy-MM-dd HH:mm:ss" />
 		      	<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd" />
 		    </tr>
 		    <tr>

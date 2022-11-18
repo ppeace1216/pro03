@@ -3,6 +3,7 @@ package kr.go.jeonju.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.go.jeonju.dto.NoticeDTO;
@@ -89,11 +90,15 @@ public class TourDAO {
 			pstmt.setString(3, dto.getTitle());
 			pstmt.setString(4, dto.getSubtitle());
 			pstmt.setString(5, dto.getContent());
+			pstmt.setString(6, dto.getAddr());
 			cnt = pstmt.executeUpdate();
 		} catch(ClassNotFoundException e){
 			System.out.println("드라이버 로딩 실패");
+		} catch(SQLException e){
+			System.out.println("SQL 구문이 처리되지 못했습니다.");
+			e.printStackTrace();
 		} catch(Exception e){
-			System.out.println("SQL 구문이 처리되지 못했거나 연산이 잘못되었습니다.");
+			System.out.println("잘못된 연산 및 요청으로 인해 목록을 불러오지 못했습니다.");
 		} finally {
 			Maria.close(pstmt, con);
 		}
@@ -147,6 +152,7 @@ public class TourDAO {
 				tour.setContent(rs.getString("content"));
 				tour.setRegdate(rs.getString("regdate"));
 				tour.setVisited(rs.getInt("visited"));
+				tour.setAddr(rs.getString("addr"));
 			}
 		} catch(ClassNotFoundException e){
 			System.out.println("드라이버 로딩 실패");
@@ -157,29 +163,26 @@ public class TourDAO {
 		}
 		return tour;
 	}
-	
-	public ArrayList<PicDTO> JSONPicList1(String tourno) {
-		ArrayList<PicDTO> picList = new ArrayList<PicDTO>();
+
+	public int delTour(int no) {
+		int cnt = 0;
 		try {
 			con = Maria.getConnection();
-			pstmt = con.prepareStatement(Maria.JSON_PICLIST);
-			pstmt.setString(1, tourno);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				PicDTO pic = new PicDTO();
-				pic.setNo(rs.getInt("no"));
-				pic.setTourno(rs.getString("tourno"));
-				pic.setPicname(rs.getString("picname"));
-				pic.setPos(rs.getInt("pos"));
-				picList.add(pic);
-			}
+			//글 삭제
+			pstmt = con.prepareStatement(Maria.TOUR_DEL);
+			pstmt.setInt(1, no);
+			cnt = pstmt.executeUpdate();
 		} catch(ClassNotFoundException e){
 			System.out.println("드라이버 로딩 실패");
+			e.printStackTrace();
+		} catch(SQLException e){
+			System.out.println("SQL 구문이 처리되지 못했습니다.");
+			e.printStackTrace();
 		} catch(Exception e){
-			System.out.println("SQL 구문이 처리되지 못했거나 연산이 잘못되었습니다.");
+			System.out.println("잘못된 연산 및 요청으로 인해 목록을 불러오지 못했습니다.");
 		} finally {
-			Maria.close(rs, pstmt, con);
+			Maria.close(pstmt, con);
 		}
-		return picList;
+		return cnt;
 	}
 }

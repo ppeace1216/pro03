@@ -42,9 +42,9 @@ public class AddUserCtrl extends HttpServlet {
 		UserDAO dao = new UserDAO();
 		cnt = dao.idCheckPro(id);
 		
-		//비밀번호를 암호화
-		UserDTO user = new UserDTO();
 		
+		UserDTO user = new UserDTO();
+		//비밀번호를 암호화
 		String key = "%02x";
 		String encrypted = "";
 		try {
@@ -67,7 +67,7 @@ public class AddUserCtrl extends HttpServlet {
 			user.setAddr(addr1 + "<br>" + addr2);
 			suc = dao.addUser(user);
 			if(suc>=1){
-				response.sendRedirect(request.getContextPath());
+				response.sendRedirect("./user/login.jsp");
 			} else {
 				response.sendRedirect("./user/join.jsp?qid="+id);
 			}

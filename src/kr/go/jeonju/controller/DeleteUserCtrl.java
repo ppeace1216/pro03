@@ -27,20 +27,19 @@ public class DeleteUserCtrl extends HttpServlet {
 		UserDAO dao = new UserDAO();
 		int cnt = dao.userDelete(id);
 		
-		if (cnt>=1){
-			if (id.equals("admin")){
+		if (id=="admin"){
+			if (cnt>=1){
 				response.sendRedirect("/WEB-INF/user/userList.jsp");
 			} else {
-				session.invalidate();
-				response.sendRedirect("/");
+				response.sendRedirect("GetUserDetailCtrl.do?id="+id);
 			}
 		} else {
-			if (id.equals("admin")){
-				response.sendRedirect("/WEB-INF/user/userUpdate.jsp");
+			if (cnt>=1){
+				session.invalidate();
+				response.sendRedirect(request.getContextPath());
 			} else {
-				response.sendRedirect("/WEB-INF/user/userDetail.jsp");
+				response.sendRedirect("UserInfoCtrl.do?id="+id);
 			}
 		}
 	}
-
 }

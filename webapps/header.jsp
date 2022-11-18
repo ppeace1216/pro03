@@ -61,7 +61,7 @@
         <div class="navbar-dropdown">
           <a class="navbar-item" href="${path2 }/GetNoticeListCtrl.do">지금 전주</a>
           <a class="navbar-item">국제슬로시티 전주</a>
-          <a class="navbar-item">랜선 전주여행</a>
+          <a class="navbar-item">랜선전주여행</a>
         </div>
       </div>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -71,7 +71,7 @@
           <a class="navbar-item">대중교통 정보 조회</a>
           <a class="navbar-item">관광지도</a>
           <a class="navbar-item">관광택시</a>
-          <a class="navbar-item">관광안내소</a>
+          <a class="navbar-item">묻고 답하기</a>
         </div>
       </div>
     </div>

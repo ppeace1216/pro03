@@ -12,16 +12,16 @@ import kr.go.jeonju.dto.TourDTO;
 import kr.go.jeonju.model.TourDAO;
 
 
-@WebServlet("/AddTourCtrl.do")
-public class AddTourCtrl extends HttpServlet {
+@WebServlet("/ModifyProTourCtrl")
+public class ModifyProTourCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		int no = Integer.parseInt(request.getParameter("no"));
 		String cate = request.getParameter("cate");
 		String tourno = request.getParameter("tourno");
 		String title = request.getParameter("title");
@@ -29,14 +29,22 @@ public class AddTourCtrl extends HttpServlet {
 		String content = request.getParameter("content");
 		String addr1 = request.getParameter("address1");
 		String addr2 = request.getParameter("address2");
+		String addr = "";
+		
+		if(addr1!=""){
+			addr = addr1+addr2;
+		} else {
+			addr = request.getParameter("addr");
+		}
 		
 		TourDTO dto = new TourDTO();
+		dto.setNo(no);
 		dto.setCate(cate);
 		dto.setTourno(tourno);
 		dto.setTitle(title);
 		dto.setSubtitle(subtitle);
 		dto.setContent(content);
-		dto.setAddr(addr1+addr2);
+		dto.setAddr(addr);
 		
 		TourDAO dao = new TourDAO();
 		int cnt = dao.addTour(dto);
@@ -44,7 +52,7 @@ public class AddTourCtrl extends HttpServlet {
 		if(cnt>=1){
 			response.sendRedirect("GetTourListCtrl.do");
 		} else {
-			response.sendRedirect("./tour/addTour.jsp");
+			response.sendRedirect("ModifyTourCtal.do?no="+no);
 		}
 	}
 }

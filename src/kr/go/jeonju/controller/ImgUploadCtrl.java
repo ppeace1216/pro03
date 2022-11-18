@@ -54,23 +54,23 @@ public class ImgUploadCtrl extends HttpServlet {
 			
 			String imageURL = uploadPath + fileName1;
 			
-			try {
-				//개발자 컴퓨터에도 파일 업로드
-				File imgURL = new File(imageURL);
-				String extension = imageURL.substring(imageURL.lastIndexOf(".")+1); // 확장자
-				
-				BufferedImage image = ImageIO.read(imgURL);
-				File file = new File(saveFolder + fileName1);
-				if(!file.exists()) { // 해당 경로의 폴더가 존재하지 않을 경우
-					file.mkdirs(); // 해당 경로의 폴더 생성
-				}
-				
-				ImageIO.write(image, extension, file); // image를 file로 업로드
-				System.out.println("이미지 업로드 완료!");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
+//			try {
+//				//개발자 컴퓨터에도 파일 업로드
+//				File imgURL = new File(imageURL);
+//				String extension = imageURL.substring(imageURL.lastIndexOf(".")+1); // 확장자
+//				
+//				BufferedImage image = ImageIO.read(imgURL);
+//				File file = new File(saveFolder + fileName1);
+//				if(!file.exists()) { // 해당 경로의 폴더가 존재하지 않을 경우
+//					file.mkdirs(); // 해당 경로의 폴더 생성
+//				}
+//				
+//				ImageIO.write(image, extension, file); // image를 file로 업로드
+//				System.out.println("이미지 업로드 완료!");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			
 			dto.setPicname(fileName1);
 			dto.setPos(pos);
 			dto.setTourno(tourno);
