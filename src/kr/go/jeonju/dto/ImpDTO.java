@@ -2,14 +2,14 @@ package kr.go.jeonju.dto;
 
 public class ImpDTO {
 	private int no;
-	private String cate; 
+	private String cate;
 	private String tourno;
 	private String id;
-	private String title; 
-	private String content; 
-	private double star;
+	private String content;
+	private Double star;
 	private String imgSrc;
 	private String regdate;
+	private String place;
 	public int getNo() {
 		return no;
 	}
@@ -34,22 +34,16 @@ public class ImpDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public double getStar() {
+	public Double getStar() {
 		return star;
 	}
-	public void setStar(double star) {
+	public void setStar(Double star) {
 		this.star = star;
 	}
 	public String getImgSrc() {
@@ -64,12 +58,20 @@ public class ImpDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
 	@Override
 	public String toString() {
 		return "ImpDTO [no=" + no + ", cate=" + cate + ", tourno=" + tourno
-				+ ", id=" + id + ", title=" + title + ", content=" + content
-				+ ", star=" + star + ", imgSrc=" + imgSrc + ", regdate="
-				+ regdate + "]";
+				+ ", id=" + id + ", content=" + content + ", star=" + star
+				+ ", imgSrc=" + imgSrc + ", regdate=" + regdate + ", place="
+				+ place + "]";
 	}
 	
+	
+
 }

@@ -1,4 +1,4 @@
-package kr.go.jeonju.controller;
+package kr.go.jeonju.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,30 +11,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-import kr.go.jeonju.dto.PicDTO;
+import kr.go.jeonju.dto.TourDTO;
 import kr.go.jeonju.model.TourDAO;
+import net.sf.json.JSONObject;
 
-@WebServlet("/ImgResearchCtrl.do")
-public class ImgResearchCtrl extends HttpServlet {
+
+@WebServlet("/CateLoadCtrl.do")
+public class CateLoadCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-
-		String tourno = request.getParameter("tourno");
-			
-		PrintWriter out = response.getWriter();
-		TourDAO tour = new TourDAO();
-		ArrayList<PicDTO> picList = tour.JSONPicList(tourno);
+        response.setContentType("application/json");
 		
+		String cate = request.getParameter("cate");
+		System.out.println("카테고리: "+cate);
+		TourDAO dao = new TourDAO();
+		
+		ArrayList<TourDTO> result = dao.getTourCateList(cate);
+
+		PrintWriter out = response.getWriter();
 		HashMap<String,Object> map = new HashMap<String, Object>();
-		map.put("picList", picList);
+		map.put("result", result);
 		
 		JSONObject json = new JSONObject();
 		json.putAll(map);
-		out.println(json);
+		out.println(json.toString());
 	}
 }

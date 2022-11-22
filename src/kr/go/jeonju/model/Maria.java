@@ -33,12 +33,14 @@ public class Maria {
 	final static String LOAD_LAST_NO = "select no from tour order by no desc limit 1";
 	final static String FILE_UPLOAD = "insert into pic(tourno, picname, pos) values (?,?,?)";
 	final static String JSON_PICLIST = "select * from pic where tourno=?";
+	final static String PIC_SELECT_ONE = "select * from pic where tourno=? order by pos asc limit 1";
 	final static String ADD_TOUR = "insert into tour(tourno, cate, title, subtitle, content, addr) values (?,?,?,?,?,?)";
 	final static String TOUR_LIST_ALL = "select * from tour";
 	final static String TOUR_CATE_LIST = "select a.no, a.tourno, a.cate, a.title, a.subtitle, a.content, b.picname, b.pos from tour a inner join pic b on a.tourno=b.tourno where a.cate=? and b.pos=1";
 	final static String TOUR_VISITED_UPDATE = "update tour set visited = visited + 1 where no=?";
+	final static String TOUR_IMPRESS_PLACE = "select * from tour where tourno=?";
 	
-	final static String TOUR_SEARCH_title_LIST = "select * from tour where title like CONCAT('%',?,'%')"; //'%'+?+'%'
+	final static String TOUR_SEARCH_PLACE_LIST = "select * from tour where title like CONCAT('%',?,'%')"; //'%'+?+'%'
 	final static String TOUR_SEARCH_COMMENT_LIST = "select * from tour where content like ?";
 	final static String TOUR_SEARCH_ALL_LIST = "select * from tour where title like ? or content like ?";
 	final static String TOUR_LIST_DETAIL = "select * from tour where no=?";
@@ -46,7 +48,22 @@ public class Maria {
 	final static String MODIFY_TOUR = "update tour set tourno=?, cate=?, title=?, subtitle=?, content=?, addr=? where no=?";
 	
 	
-	final static String ADD_IMP = "insert into impress(tourno, cate, id, title, content, star, imgSrc) values (?,?,?,?,?,?,?)";
+	public static final String IMPRESS_SELECT_ALL = "select * from impress order by regdate desc";
+	public static final String IMPRESS_SELECT_ONE = "select * from impress where no=?";
+	public static final String IMPRESS_INSERT = "insert into impress(cate, tourno, id, content, star, imgSrc) values (?,?,?,?,?,?)";
+	public static final String IMPRESS_DELETE = "delete from impress where no=?";
+	public static final String IMPRESS_UPDATE = "update impress SET content=?, star=? where id=? and no=?";
+	
+	public static final String QNA_SELECT_ALL = "select * from qna order by parno desc, no asc, lev asc";
+	public static final String QNA_VISITED_UPDATE = "update qna set visited=visited+1 where no=?";
+	public static final String QNA_SELECT_ONE = "select * from qna where no=?";
+	public static final String QNA_INSERT = "insert into qna(title, content, author, lev, sec) values (?,?,?,?,?)";
+	public static final String QNA_SELECT_UP = "select no from qna order by regdate desc limit 1";
+	public static final String QNA_INSERT_UPDATE = "update qna set parno=no where lev = 0 AND no=?";
+	public static final String QNA_DELEDTE = "delete from qna where no=?";
+	public static final String QNA_ALL_DELEDTE = "delete from qna where parno=?";
+	public static final String QNA_UPDATE = "update qna set title=?, content=?, author=?, sec=?, lev=? where no=?";
+	public static final String QNA_REPLY_INSERT = "insert into qna(title, content, author, lev, parno, sec) values (?,?,?,?,?,?)";
 	
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {

@@ -16,6 +16,20 @@
   </head>
   <body>
   <jsp:include page="/header.jsp" />
+  <div class="top">
+  	<br><br>
+  	<h1 class="title">공지사항</h1>
+  	<br><hr>
+  </div>
+  <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+	  <ul>
+	    <li><a href="#">Bulma</a></li>
+	    <li><a href="#">Documentation</a></li>
+	    <li><a href="#">Components</a></li>
+	    <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+	  </ul>
+	</nav>
+	<hr>
   <section class="section">
     <div class="container">
       <h1 class="title">공지사항</h1>
@@ -36,7 +50,7 @@
 		    <tr> 
 		      <th>작성일</th>
 		      <td>
-		      	<fmt:parseDate value="${dto.regdate }" var="regdate" pattern="yyyy-MM-dd HH:mm:ss" />
+		      	<fmt:parseDate value="${dto.regDate }" var="regdate" pattern="yyyy-MM-dd HH:mm:ss" />
 		      	<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd" />
 		    </tr>
 		    <tr>

@@ -26,13 +26,13 @@
 			</td>
 		</tr>
 		<tr>
-			<th>글번호</th>
+			<th>장소 번호</th>
 			<td>
 				<input type="text" name="tourno" id="tourno" class="input" value="<%=tourno %>" readonly />
 			</td>
 		</tr>
 		<tr>
-			<th>파일 올리기</th>
+			<th>업로드 파일</th>
 			<td>
 				<div class="file">
 				  <label class="file-label">
@@ -44,23 +44,25 @@
 		<tr>
 			<td colspan="2">
 				<div class="field is-grouped">
-					<div class="control">
-						<button type="button" class="button is-link" onclick="fileUpload()">파일 업로드</button>
-					</div>
-					<div class="control">
-						<button type="reset" class="button is-link is-light">취소</button>
-					</div>
-					<div class="control">
-						<button type="button" class="button is-link is-light" onclick="picCheck()">확인</button>
-					</div>
-					<div class="control">
-						<button type="button" class="button is-link is-light" onclick="window.close()">닫기</button>
-					</div>
+				  <div class="control">
+				    <button type="button" class="button is-link" onclick="fileUpload()">파일 업로드</button>
+				  </div>
+				  <div class="control">
+				    <button type="reset" class="button is-link is-light">취소</button>
+				  </div>
+				  <div class="control">
+				    <button type="button" class="button is-link is-light" onclick="picCheck()">확인</button>
+				  </div>
+				  <div class="control">
+				    <button type="button" class="button is-link is-light" onclick="window.close()">닫기</button>
+				  </div>
 				</div>
 			</td>
 		</tr>
 	</table>
-	<div id="imgUpload"></div>
+	<div id="imgUpload">
+		
+	</div>
 	<script>
 	$(document).ready(function(){
 		fileResearch();
@@ -73,15 +75,15 @@
 			return;
 		}
 		//파일 용량 제한
-		var maxSize = 10*1024*1024;		//10MB
-		if($('#picname').val()!=""){
+		var maxSize  = 10*1024*1024;    //10MB
+		if ($('#picname').val() != "") { 
 			var size = document.getElementById("picname").files[0].size;
-			if(size>maxSize){
-				alert("첨부파일 사이즈는 10MB 이하만 등록 가능합니다.");
+			if(size > maxSize){
+				alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
 				$('#picname').val("");
 				$('#picname').focus();
 				return false;
-			}
+	        }
 		}
 		var form = $("#upload")[0];
 		var indata = new FormData(form);
@@ -142,10 +144,10 @@
 	</script>
 	<script>
 	function picCheck(){
-		if(document.upload.pos.value=="<%=no %>" || document.upload.pos.value==1){
+		if(document.upload.pos.value=="1" || document.upload.pos.value==1){
 			opener.document.frm1.pic_ck1.value = "yes";
 			opener.document.frm1.pic1.value = document.upload.picname.value;
-		}
+		} 
 		window.close();
 	}
 	</script>
