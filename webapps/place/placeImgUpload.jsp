@@ -17,7 +17,7 @@
 <jsp:include page="../head.jsp" />
 </head>
 <body>
-<form name="upload" id="upload" action="${path1 }/ImgUploadCtrl.do" method="post" enctype="multipart/form-data">
+<form name="upload" id="upload" action="${path1 }/PlaceImgUploadCtrl.do" method="post" enctype="multipart/form-data">
 	<table class="table">
 		<tr>
 			<th>위치</th>
@@ -89,7 +89,7 @@
 		var form = $("#upload")[0];
 		var indata = new FormData(form);
 		$.ajax({
-			url:"${path1 }/ImgUploadCtrl.do",
+			url:"${path1 }/PlaceImgUploadCtrl.do",
 			type:"POST",
 			enctype:"multipart/form-data",
 			data:indata,
@@ -119,7 +119,7 @@
 				tourno : $("#tourno").val()
 		};
 		$.ajax({
-			url:"${path1 }/ImgResearchCtrl.do",
+			url:"${path1 }/PlaceImgResearchCtrl.do",
 			type:"post",
 			encType:"UTF-8",
 			data:params,

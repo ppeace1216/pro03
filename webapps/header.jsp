@@ -34,8 +34,8 @@
 		
 		        <div class="navbar-dropdown">
 		          <a href="${path2 }/GetTourCateListCtrl.do?cate=D"  class="navbar-item" id="D">축제</a>
-		          <a class="navbar-item">체험/놀이</a>
-		          <a class="navbar-item">문화시설</a>
+		          <a href="${path2 }/GetPlaceCateListCtrl.do?cate=H"  class="navbar-item" id="H">체험/놀이</a>
+		          <a href="${path2 }/GetPlaceCateListCtrl.do?cate=I"  class="navbar-item" id="I">문화시설</a>
 		        </div>
 		      </div>
 		      <div href="${path2 }/GetTourCateListCtrl.do?cate=E" class="navbar-item has-dropdown is-hoverable">
@@ -55,10 +55,10 @@
 		        </div>
 		      </div>
 		      <div class="navbar-item has-dropdown is-hoverable">
-		        <a class="navbar-link">관광가이드</a>
+		        <a href="${path2 }/GetPlaceCateListCtrl.do?cate=J" class="navbar-link">관광가이드</a>
 		
 				<div class="navbar-dropdown">
-				  <a class="navbar-item">관광안내소</a>
+				  <a href="${path2 }/GetPlaceCateListCtrl.do?cate=J"  class="navbar-item" id="J">관광안내소</a>
 		          <a class="navbar-item" href="${path2 }/GetQnaListCtrl.do">관광지도신청</a>
 		          <a class="navbar-item" href="${path2 }/GetImpressListCtrl.do">관광 후기</a>
 		          <a class="navbar-item" href="${path2 }/GetNoticeListCtrl.do">공지사항</a>

@@ -44,6 +44,18 @@ desc tour;
 ALTER TABLE tour ADD COLUMN addr VARCHAR(200);
 select * from tour;
 
+create table place(
+	no INT PRIMARY KEY AUTO_INCREMENT,
+	tourno VARCHAR(20),	-- 카테고리 타입 - 마지막 레코드의 no+1
+	cate VARCHAR(20),
+	place VARCHAR(100),
+	comment1 VARCHAR(1000),
+	comment2 VARCHAR(1000),
+	addr varchar(200)
+);
+ALTER TABLE place ADD COLUMN tel VARCHAR(15);
+select * from place;
+
 create table pic(no INT PRIMARY KEY AUTO_INCREMENT, tourno varchar(20), picname varchar(100), pos int default 1);
 desc pic;
 

@@ -22,8 +22,8 @@ import net.sf.json.JSONObject;
 import com.oreilly.servlet.MultipartRequest;
 
 
-@WebServlet("/ImgUploadCtrl.do")
-public class ImgUploadCtrl extends HttpServlet {
+@WebServlet("/PlaceImgUploadCtrl.do")
+public class PlaceImgUploadCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    

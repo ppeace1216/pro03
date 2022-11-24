@@ -22,6 +22,7 @@
   <section class="section">
     <div class="container">
 		<h2 class="title">질문 및 답변 상세 내용</h2>
+		<p>신청 문의 남겨주시면 확인 후 빠른 시일 내 회원가입 시 등록된 주소로 보내드립니다.</p>
 		<table class="table">
 			<tbody>
 				<tr>
@@ -59,7 +60,7 @@
 					<td>${vo.content }</td>
 				</tr>
 				<tr>
-					<th>작성자</th>
+					<th>신청자</th>
 					<td>${vo.author }</td>
 				</tr>
 				<tr>

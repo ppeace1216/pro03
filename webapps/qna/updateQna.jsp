@@ -12,7 +12,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>질문하기</title>
+    <title>답변 하기</title>
     <jsp:include page="/head.jsp" />
 	<link rel="stylesheet" href="${path1 }/resource/datatables.min.css">
 	<script src="${path1 }/resource/datatables.min.js"></script>
@@ -21,30 +21,39 @@
   <jsp:include page="/header.jsp" />
   <section class="section">
     	<div class="container">
-			<h2 class="title">관광지도 신청하기</h2>
-			<form name="frm1" id="frm1" action="${path1 }/AddQnaProCtrl.do" method="post">
+			<h2 class="title">질문 및 답변 상세 내용</h2>
+			<form name="frm1" id="frm1" action="${path1 }/UpdateQnaProCtrl.do" method="post">
+				<input type="hidden" name="no" id="no" value="${vo.no }"/>
 				<table class="table">
 					<tbody>
 						<tr>
 							<th><label for="title">제목</label></th>
-							<td><input type="text" name="title" id="title" placeholder="제목 입력" maxlength="100" class="input" required></td>
+							<td><input type="text" name="title" id="title" placeholder="제목 입력" maxlength="100" class="input" value="${vo.title }" required></td>
 						</tr>
 						<tr>
 							<th><label for="content">내용</label></th>
 							<td>
-								<textarea cols="100" rows="6" name="content" id="content" maxlength="600" class="textarea"></textarea>
+								<textarea cols="100" rows="6" name="content" id="content" maxlength="600" class="input">${vo.content }</textarea>
 							</td>
 						</tr>
 						<tr>
 							<th><label for="author">신청자</label></th>
 							<td>
 								<input type="text" name="author" id="author" class="input" value='${sid }' readonly required>
-								<input type="hidden" name="lev" id="lev" value="0">
+								<input type="hidden" name="lev" id="lev" value="${vo.lev }">
 							</td>
 						</tr>
 						<tr>
 							<th><label for="sec1">비밀글 여부</label></th>
 							<td>
+								<p>현재 상태 :
+								<c:if test='${vo.sec.equals("Y") }'>
+									<strong>비밀글</strong>
+								</c:if>
+								<c:if test='${vo.sec.equals("N") }'>
+									<strong>공개</strong>
+								</c:if>
+								</p>
 								<input type="radio" name="sec" id="sec1" value="N" checked>
 								<label for="">공개</label>
 								<input type="radio" name="sec" id="sec2" value="Y">
@@ -54,8 +63,9 @@
 					</tbody>
 				</table>
 				<div class="btn-group">
-					<button type="submit" class="button is-primary">신청하기</button>
-					<a href="<%=request.getContextPath() %>/GetQnaListCtrl.do" class="button is-info">목록으로</a>
+					<input type="submit" value="글 변경" class="button is-info">
+					<a href="${path1 }/GetQnaListCtrl.do" class="button is-primary">목록으로</a>
+					<a href="${path1 }/DeleteQnaCtrl.do?no=${vo.no }" class="button is-danger">글 삭제</a>
 				</div>
 			</form>
 		</div>	

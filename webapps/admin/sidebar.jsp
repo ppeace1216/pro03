@@ -18,4 +18,10 @@
 	<div class="navbar-menu">
 		<a href="${path1 }/GetTourListCtrl.do" class="navbar-item">여행안내 전체목록</a>
 	</div>
+	<div class="navbar-menu">
+		<a href="${path1 }/place/addPlace.jsp" class="navbar-item">장소안내 등록</a>
+	</div>
+	<div class="navbar-menu">
+		<a href="${path1 }/GetPlaceListCtrl.do" class="navbar-item">장소안내 전체목록</a>
+	</div>
 </div>

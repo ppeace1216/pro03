@@ -47,6 +47,18 @@ public class Maria {
 	final static String TOUR_DEL = "delete from tour where no=?";
 	final static String MODIFY_TOUR = "update tour set tourno=?, cate=?, title=?, subtitle=?, content=?, addr=? where no=?";
 	
+	final static String LOAD_LAST_PNO = "select no from place order by no desc limit 1";
+	final static String ADD_PLACE = "insert into place(tourno, cate, place, comment1, comment2, addr, tel) values (?,?,?,?,?,?,?)";
+	final static String PLACE_LIST_ALL = "select * from place order by no desc";
+	final static String PLACE_IMPRESS_PLACE = "select * from place where tourno=?";
+	final static String PLACE_CATE_LIST = "select a.no, a.tourno, a.cate, a.place, a.comment1, a.addr, a.tel, b.picname, b.pos from place a inner join pic b on a.tourno=b.tourno where a.cate=? and b.pos=1";
+	
+	final static String PLACE_SEARCH_PLACE_LIST = "select * from place where title like CONCAT('%',?,'%')"; //'%'+?+'%'
+	final static String PLACE_SEARCH_COMMENT_LIST = "select * from place where content like ?";
+	final static String PLACE_SEARCH_ALL_LIST = "select * from place where title like ? or content like ?";
+	final static String PLACE_LIST_DETAIL = "select * from place where no=?";
+	final static String PLACE_DEL = "delete from place where no=?";
+	final static String MODIFY_PLACE = "update place set tourno=?, cate=?, title=?, subtitle=?, content=?, addr=?, tel=? where no=?";
 	
 	public static final String IMPRESS_SELECT_ALL = "select * from impress order by regdate desc";
 	public static final String IMPRESS_SELECT_ONE = "select * from impress where no=?";

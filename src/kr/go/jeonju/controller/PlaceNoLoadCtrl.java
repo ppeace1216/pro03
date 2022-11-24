@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.go.jeonju.model.PlaceDAO;
+
 import org.json.JSONObject;
 
-import kr.go.jeonju.model.TourDAO;
 
-
-@WebServlet("/NoLoadCtrl.do")
-public class NoLoadCtrl extends HttpServlet {
+@WebServlet("/PlaceNoLoadCtrl.do")
+public class PlaceNoLoadCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class NoLoadCtrl extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		TourDAO dao = new TourDAO();
+		PlaceDAO dao = new PlaceDAO();
 		int firstNo = dao.loadLastNo();
 		String no = "";
 		if(firstNo<=9){

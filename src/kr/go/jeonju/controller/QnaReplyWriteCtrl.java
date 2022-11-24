@@ -1,43 +1,35 @@
 package kr.go.jeonju.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import kr.go.jeonju.dto.QnaDTO;
+import kr.go.jeonju.model.QnaDAO;
 
-import kr.go.jeonju.model.TourDAO;
-
-
-@WebServlet("/NoLoadCtrl.do")
-public class NoLoadCtrl extends HttpServlet {
+@WebServlet("/QnaReplyWriteCtrl.do")
+public class QnaReplyWriteCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+
+		int no = Integer.parseInt(request.getParameter("no"));
 		
-		TourDAO dao = new TourDAO();
-		int firstNo = dao.loadLastNo();
-		String no = "";
-		if(firstNo<=9){
-			no = "000"+firstNo;
-		} else if(firstNo<=99){
-			no = "00"+firstNo;
-		} else if(firstNo<=999){
-			no = "0"+firstNo;
-		} else {
-			no = ""+firstNo;
-		}
-		JSONObject json = new JSONObject();
-		json.put("no", no);
-		PrintWriter out = response.getWriter();
-		out.println(json.toString());
+		QnaDAO dao = new QnaDAO();
+		QnaDTO qna = dao.getQna(no);
+		
+		request.setAttribute("qna", qna);
+			
+		//qna/replyWrite.jsp 에 포워딩
+		RequestDispatcher view = request.getRequestDispatcher("./qna/replyWrite.jsp");
+		view.forward(request, response);
 	}
 }
