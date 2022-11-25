@@ -123,4 +123,62 @@ public class PlaceDAO {
 		}
 		return cnt;
 	}
+
+	public ArrayList<PlaceDTO> getPlaceList() {
+		ArrayList<PlaceDTO> placeList = new ArrayList<PlaceDTO>();
+		try {
+			con = Maria.getConnection();
+			pstmt = con.prepareStatement(Maria.PLACE_LIST_ALL);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				PlaceDTO tour = new PlaceDTO();
+				tour.setNo(rs.getInt("no"));
+				tour.setTourno(rs.getString("tourno"));
+				tour.setCate(rs.getString("cate"));
+				tour.setPlace(rs.getString("place"));
+				tour.setComment1(rs.getString("comment1"));
+				tour.setComment2(rs.getString("comment2"));
+				tour.setAddr(rs.getString("addr"));
+				tour.setTel(rs.getString("tel"));
+				placeList.add(tour);
+			}
+		} catch(ClassNotFoundException e){
+			System.out.println("드라이버 로딩 실패");
+		} catch(Exception e){
+			System.out.println("SQL 구문이 처리되지 못했거나 연산이 잘못되었습니다.");
+		} finally {
+			Maria.close(rs, pstmt, con);
+		}
+		return placeList;
+	}
+
+	public ArrayList<PlaceDTO> getPlaceCateList(String cate) {
+		ArrayList<PlaceDTO> placeList = new ArrayList<PlaceDTO>();
+		try {
+			con = Maria.getConnection();
+			pstmt = con.prepareStatement(Maria.TOUR_CATE_LIST);
+			pstmt.setString(1, cate); 
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				PlaceDTO tour = new PlaceDTO();
+				tour.setNo(rs.getInt("no"));
+				tour.setTourno(rs.getString("tourno"));
+				tour.setCate(rs.getString("cate"));
+				tour.setPlace(rs.getString("place"));
+				tour.setImgURL(rs.getString("picname"));
+				tour.setComment1(rs.getString("comment1"));
+				tour.setComment2(rs.getString("comment2"));
+				tour.setAddr(rs.getString("addr"));
+				tour.setTel(rs.getString("tel"));
+				placeList.add(tour);
+			}
+		} catch(ClassNotFoundException e){
+			System.out.println("드라이버 로딩 실패");
+		} catch(Exception e){
+			System.out.println("SQL 구문이 처리되지 못했거나 연산이 잘못되었습니다.");
+		} finally {
+			Maria.close(rs, pstmt, con);
+		}
+		return placeList;
+	}
 }

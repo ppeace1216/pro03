@@ -10,30 +10,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.go.jeonju.dto.TourDTO;
-import kr.go.jeonju.model.TourDAO;
+import kr.go.jeonju.dto.PlaceDTO;
+import kr.go.jeonju.model.PlaceDAO;
 
-@WebServlet("/GetTourCateListCtrl.do")
-public class GetTourCateListCtrl extends HttpServlet {
+
+@WebServlet("/GetPlaceListCtrl.do")
+public class GetPlaceListCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//UTF-8 초기화
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		String cate = request.getParameter("cate");
-		//dao에서 목록 불러오기 호출하여 반환받음
-		TourDAO dao = new TourDAO();
-		ArrayList<TourDTO> tourList = dao.getTourCateList(cate);
+		PlaceDAO dao = new PlaceDAO();
+		ArrayList<PlaceDTO> placeList = dao.getPlaceList();
 		
 		//dao로 부터 받은 데이터를 view에 디스패치함
-		request.setAttribute("list", tourList);
-		request.setAttribute("placeCate", cate);
+		request.setAttribute("list", placeList);
 		
-		RequestDispatcher view = request.getRequestDispatcher("./WEB-INF/tour/tourCateList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/place/placeList.jsp");
 		view.forward(request, response);
 	}
 }

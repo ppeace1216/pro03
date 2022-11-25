@@ -13,20 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>장소 상세보기</title>
     <jsp:include page="/head.jsp" />
-   <style>
-  	.top {clear:both; width:auto; margin:auto; text-align : center;}
-  	.section { clear:both; width:1200px; margin:0 auto; }
-	.section:after { content:""; display:block; clear:both; }
-	.breadcrumb { clear:both; margin:100 auto; }
-	.ttitle {clear:both; width:auto; margin:auto; text-align : center;}
-  </style>
   </head>
   <body>
   <jsp:include page="/header.jsp" />
 	<div class="top">
   	<br><br><br>
   	<h1 class="title is-1">
-  		<c:set var="cate" value="${dto.cate }" /> 
+  		<c:set var="cate" value="${placeCate }" /> 
 		<c:if test="${cate eq 'A' }">
 		<span>이달의 추천여행</span>
 		</c:if>
@@ -55,7 +48,7 @@
 	  <ul>
 	    <li><a href="${path1 }/">Home</a></li>
 	    <li class="is-active"><a href="${path1 }/GetTourCateListCtrl.do?cate=${dto.cate }" aria-current="page">
-	    	<c:set var="cate" value="${dto.cate }" /> 
+	    	<c:set var="cate" value="${placeCate }" /> 
 			<c:if test="${cate eq 'A' }">
 			<span>이달의 추천여행</span>
 			</c:if>
@@ -141,7 +134,7 @@
 			            <img src="${path1 }/upload/${dto.imgURL }" alt="${dto.title }">
 			          </figure>
 			          <div class="content" style="margin:10px;">
-			          	<p class="item_com">${dto.content }</p>
+			          	<p class="item_com">${dto.subtitle }</p>
 			          </div>
 			          <a href="${path1 }/GetTourDetailCtrl.do?no=${dto.no }" class="button is-primary">자세히 보기</a>
 			        </article>

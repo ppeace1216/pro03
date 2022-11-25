@@ -80,7 +80,7 @@ public class PlaceImgUploadCtrl extends HttpServlet {
 				System.out.println("업로드 성공");
 			} else {
 				System.out.println("업로드 실패");
-				response.sendRedirect("./tour/imgUpload.jsp?no="+pos+"&tourno="+tourno);
+				response.sendRedirect("./place/placeImgUpload.jsp?no="+pos+"&tourno="+tourno);
 			}
 
 			PrintWriter out = response.getWriter();

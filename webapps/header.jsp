@@ -38,8 +38,8 @@
 		          <a href="${path2 }/GetPlaceCateListCtrl.do?cate=I"  class="navbar-item" id="I">문화시설</a>
 		        </div>
 		      </div>
-		      <div href="${path2 }/GetTourCateListCtrl.do?cate=E" class="navbar-item has-dropdown is-hoverable">
-		    	<a class="navbar-link cate">
+		      <div class="navbar-item has-dropdown is-hoverable">
+		    	<a href="${path2 }/GetTourCateListCtrl.do?cate=E" class="navbar-link cate">
 			      	전주의 맛
 			    </a>
 		   		<div class="navbar-dropdown cate" id="cate05">
