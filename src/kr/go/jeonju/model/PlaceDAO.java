@@ -181,4 +181,9 @@ public class PlaceDAO {
 		}
 		return placeList;
 	}
+
+	public PlaceDTO getPlace(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

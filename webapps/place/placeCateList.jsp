@@ -88,7 +88,7 @@
 			          <div class="content" style="margin:10px;">
 			          	<p class="item_com">${dto.comment2 }</p>
 			          </div>
-			          <div class="content" style="margin:10px;">
+			          <div class="tel" style="margin:10px;">
 			          	<p class="item_tel">${dto.tel }</p>
 			          </div>
 			          <a href="${path1 }/GetPlaceDetailCtrl.do?no=${dto.no }" class="button is-primary">자세히 보기</a>
