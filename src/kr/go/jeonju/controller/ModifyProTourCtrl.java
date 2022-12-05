@@ -12,7 +12,7 @@ import kr.go.jeonju.dto.TourDTO;
 import kr.go.jeonju.model.TourDAO;
 
 
-@WebServlet("/ModifyProTourCtrl")
+@WebServlet("/ModifyProTourCtrl.do")
 public class ModifyProTourCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

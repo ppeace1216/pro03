@@ -68,6 +68,10 @@
 			  <td>
 			  	<p class="comment2">${dto.comment2 }</p>
 			  </td>
+			  <c:if test='${sid.equals("admin") }'>
+			  	<a href="${path1 }/DelTourCtrl.do?no=${dto.no }" class="button is-danger">장소 삭제</a>
+			  	<a href="${path1 }/ModifyTourCtrl.do?no=${dto.no }" class="button is-warning">장소 수정</a>
+		      </c:if>
 		    </tr>
 		    </c:forEach>
 			<c:if test="${empty list }">

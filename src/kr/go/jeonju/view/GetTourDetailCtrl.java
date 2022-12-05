@@ -26,12 +26,12 @@ public class GetTourDetailCtrl extends HttpServlet {
 				response.setContentType("text/html; charset=UTF-8");
 				
 				int no = Integer.parseInt(request.getParameter("no"));
-				String tourno = request.getParameter("tourno");
 				
 				//dao에서 항목 불러오기 호출하여 반환받음
 				TourDAO dao = new TourDAO();
 				TourDTO dto = dao.getTour(no);
-				ArrayList<PicDTO> picList = dao.JSONPicList(tourno);
+				
+				ArrayList<PicDTO> picList = dao.JSONPicList(dto.getTourno());
 				
 				//dao로 부터 받은 데이터를 view에 디스패치함
 				request.setAttribute("dto", dto);

@@ -11,12 +11,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>장소 상세보기</title>
+    <title>장소 리스트보기</title>
     <jsp:include page="/head.jsp" />
   </head>
   <body>
   <jsp:include page="/header.jsp" />
-  <div class="top">
+  	<div class="top">
   	<br><br><br>
   	<h1 class="title is-1">
   		<c:set var="cate" value="${placeCate }" /> 
@@ -31,7 +31,7 @@
 		</c:if>
   	</h1>
   	<br><hr>
-  </div>
+  	</div>
   <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
 	  <ul>
 	    <li><a href="${path1 }/">Home</a></li>

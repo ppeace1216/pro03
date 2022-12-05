@@ -183,7 +183,29 @@ public class PlaceDAO {
 	}
 
 	public PlaceDTO getPlace(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		PlaceDTO place = new PlaceDTO();
+		try {
+			con = Maria.getConnection();
+			pstmt = con.prepareStatement(Maria.PLACE_LIST_DETAIL);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				place.setNo(rs.getInt("no"));
+				place.setTourno(rs.getString("tourno"));
+				place.setCate(rs.getString("cate"));
+				place.setPlace(rs.getString("place"));
+				place.setComment1(rs.getString("comment1"));
+				place.setComment2(rs.getString("comment2"));
+				place.setAddr(rs.getString("addr"));
+				place.setTel(rs.getString("tel"));
+			}
+		} catch(ClassNotFoundException e){
+			System.out.println("드라이버 로딩 실패");
+		} catch(Exception e){
+			System.out.println("SQL 구문이 처리되지 못했거나 연산이 잘못되었습니다.");
+		} finally {
+			Maria.close(rs, pstmt, con);
+		}
+		return place;
 	}
 }

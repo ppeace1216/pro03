@@ -2,27 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*, java.lang.*" %>
 <%@ page import="java.text.*, java.net.InetAddress" %>
 <c:set var="path1" value="<%=request.getContextPath() %>" />
 <%-- <c:set var="path1" value="${pageContext.request.contextPath }" />   --%>
 <!DOCTYPE html>
 <html>
-  <head>
+ <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상세보기</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <style>
-  	.top {clear:both; width:auto; margin:auto; text-align : center;}
-  	.section { clear:both; width:1200px; margin:0 auto; }
+    <link rel="stylesheet" type="text/css" href="http://s1.daumcdn.net/svc/attach/U03/cssjs/mapapidoc/1421136453605/service.min.css">
+	<style>
+	.top {clear:both; width:auto; margin:auto; text-align : center;}
+	.section { clear:both; width:1200px; margin:0 auto; }
 	.section:after { content:""; display:block; clear:both; }
 	.breadcrumb { clear:both; margin:100 auto; }
 	.ttitle {clear:both; width:auto; margin:auto; text-align : center;}
-  </style>
-  </head>
-  <body>
+	</style>
+	<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/v3.js"></script>
+	<script type="text/javascript" src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.11.0.js"></script>	
+	<script type="text/javascript" src="http://s1.daumcdn.net/svc/original/U0301/cssjs/JSON-js/fc535e9cc8/json2.min.js"></script>
+</head>
+<body class="web guide" data-page_section="web" data-page_type="guide" data-title="Daum 지도 Web API 가이드">
   <jsp:include page="/header.jsp" />
   <div class="top">
   	<br><br><br>
@@ -124,62 +127,58 @@
 	  				<td><p>${dto.content }</p></td>
 	  			</tr>
 	  			<tr>
-	  				<th>
-	  				<span class="icon has-text-info">
-					  <i class="fas fa-info-circle"></i>
-					</span>
-					  위치
-					</th>
-	  				<td>
-	  					${dto.addr }
-		    			<input type="hidden" name="addr" id="addr" value="${dto.addr }" />
-		    			<input type="hidden" name="title" id="title" value="${dto.title }" />
-		    		</td>
+	  				<td><p><strong>주소    </strong>${dto.addr }</p></td>
 	  			</tr>
-	  		</tbody>
-	  	</table>
-	  	<div style="clear:both; margin-bottom:20px; padding-bottom:20px; ">
-			<div id="map" style="margin-left:120px;	margin-top:50px; width:800px;height:600px; background:white; "></div>
-			<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-			<!-- https://developers.kakao.com/ 회원가입 후 -> 내 애플리케이션 -> 애플리케이션 추가 -> 추가된 해당 앱을 클릭하면 발급받은  API키를 확인할 수 있음  -->			
-			<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=e28d5d3e18d7c2e7143fdcdf4547cec7&​libraries=services"></script>
-			<script>
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			    mapOption = { //128.433182, 34.8544227
-			        center: new kakao.maps.LatLng(34.8544227, 128.433182), // 지도의 중심좌표
-			        level: 7 // 지도의 확대 레벨
-			    };  
-			
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
-			
-			// 주소-좌표 변환 객체를 생성합니다
-			var geocoder = new kakao.maps.services.Geocoder();
-			
-			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch($("#addr").val(), function(result, status) {
-			
-			    // 정상적으로 검색이 완료됐으면 
-			     if (status === kakao.maps.services.Status.OK) {
-			
-			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-			        // 결과값으로 받은 위치를 마커로 표시합니다
-			        var marker = new kakao.maps.Marker({
-			            map: map,
-			            position: coords
-			        });
-					
-			        // 인포윈도우로 장소에 대한 설명을 표시합니다
-			        var infowindow = new kakao.maps.InfoWindow({
-			            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$('#place').val()+'</div>'
-			        });
-			        infowindow.open(map, marker);
-			
-			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			        map.setCenter(coords);
-			    } 
-			});    
-			</script>
+			    <tr>
+			    	<td>
+			    		<input type="hidden" name="addr" id="addr" value="${dto.addr }" />
+			    		<input type="hidden" name="title" id="title" value="${dto.title }" />
+			    	</td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div style="clear:both; margin-bottom:20px; padding-bottom:20px; ">
+				<div id="map" style="margin-left:120px;	margin-top:50px; width:800px;height:600px; background:white; "></div>
+				<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+				<!-- https://developers.kakao.com/ 회원가입 후 -> 내 애플리케이션 -> 애플리케이션 추가 -> 추가된 해당 앱을 클릭하면 발급받은  API키를 확인할 수 있음  -->			
+				<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은API키&​libraries=services"></script>
+				<script>
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				    mapOption = { //128.433182, 34.8544227
+				        center: new kakao.maps.LatLng(35.8134533633, 127.1476062333), // 지도의 중심좌표
+				        level: 3 // 지도의 확대 레벨
+				    };  
+				
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+				
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch($("#addr").val(), function(result, status) {
+				
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+				
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				        // 결과값으로 받은 위치를 마커로 표시합니다
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+						
+				        // 인포윈도우로 장소에 대한 설명을 표시합니다
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$('#place').val()+'</div>'
+				        });
+				        infowindow.open(map, marker);
+				
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});    
+				</script>
 		</div>
 		<div class="buttons">
 		  <a href="${path1 }/GetTourListCtrl.do" class="button is-info">전체 목록</a>
